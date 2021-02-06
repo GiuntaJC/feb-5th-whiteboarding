@@ -1,0 +1,36 @@
+Turning strings to urls
+urls can't have spaces and should instead be "%20"
+replace all spaces with %20
+
+No replace method or regex
+
+input : "I make robot animals"
+output : "I%20make%20robot%20animals"
+
+edge cases: integers
+
+function checkForSpaces(input){
+	input = input.toString();
+	input = input.split(' '); // "I", "make", "robot", "animals"
+	input = input.join("%20");
+	return input;
+}
+
+function checkForSpaces(input) {
+	input = input.toString();
+	input = input.split('');
+	const checkArrayForSpaces = (inputArray, index = 0) => {
+		if(index == inputArray.length){
+			return inputArray;
+		}
+		if(inputArray[index] == " "){
+			inputArray[index] = "%20";
+			return checkArrayForSpaces(inputArray, index + 1);
+		} else {
+			return checkArrayForSpaces(inputArray, index + 1);
+		}
+	}
+	input = checkArrayForSpace(input);
+	input = input.join('');
+	return input;
+}
